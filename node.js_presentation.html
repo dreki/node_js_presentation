@@ -1,0 +1,517 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>node.js</title>
+
+</head>
+<body>
+<h1>node.js</h1>
+
+<h2>Why</h2>
+
+<ul>
+<li>V8 is fast
+
+<ul>
+<li>So, you get the felxibility of a dynamic, interpreted language and runtime without sacrificing so much performance</li>
+</ul>
+</li>
+<li>quick to get started and elaborate development</li>
+<li>seems to represent some leading-edge web development techniques (e.g. socket.io for WebSockets)</li>
+<li>a lot of activity and development around it an associated projects</li>
+<li>use one language for client- and server-side development</li>
+</ul>
+
+
+<h2>V8</h2>
+
+<p>Google's V8 is part of node.js, and makes it execute very quickly. In various benchmarks, it performs very well when compared to other "weakly-typed" languages.</p>
+
+<h3>Benchmark samples</h3>
+
+<ul>
+<li>In <a href="http://benchmarksgame.alioth.debian.org/u64/performance.php?test=spectralnorm">this benchmark ("spectralnorm")</a>:
+
+<ul>
+<li>FORTRAN and C took the top spots at 8 seconds</li>
+<li>Java 7 took 17 seconds</li>
+<li>V8 took 22 seconds (0.37 minutes)</li>
+<li>JRuby took 4.22 minutes</li>
+<li>Ruby 2.0 took 5 minutes</li>
+<li>PHP 5.5.0 took 7 minutes</li>
+<li>Python 3 took 13 minutes</li>
+<li>Perl took 14 minutes</li>
+</ul>
+</li>
+<li>Google has done a very good job optimizing the performance of regular expression operations, so V8 does very well in <a href="http://benchmarksgame.alioth.debian.org/u64/performance.php?test=regexdna">this benchmark ("regex-dna")</a>:
+
+<ul>
+<li>V8 took the top spot, taking 3.72 seconds elpased time to execute</li>
+<li>C (gcc compiler) is in second place at 5.16 seconds</li>
+<li>Java 7 took 23.17 seconds</li>
+<li>Ruby 2.0 took 29.76 seconds</li>
+</ul>
+</li>
+</ul>
+
+
+<h2>Javascript</h2>
+
+<h3>OOP</h3>
+
+<p>"Object-orientation" is achieved in node.js through the use of ECMAScript prototypical inheritance. You can go about this (or work around it) several different ways, but I'll just present here what seems to be preferred and standard:</p>
+
+<pre><code>var util = require("util");
+
+/**
+ * The constructor for the `MatrixAvatar` class.
+ * @constructor
+ */
+function MatrixAvatar(joules) {
+    // A generic name for a generic person.
+    // Note that `this` here refers to the instance of
+    // the class being constructed.
+    this.avatarName = "Coppertop";
+
+    // How much power will this man-pod give us?
+    this.joules = joules;
+
+    // Everyone is logged into the Matrix (&lt;evil laugh&gt;).
+    this.status = "loggedIn";
+}
+
+/**
+ * Admin note: NOBODY should be calling this.
+ */
+MatrixAvatar.prototype.logOut = function () {
+    console.log(
+        "WARNING: Logging out " +
+            this.avatarName +
+            "! Say goodbye to " +
+            this.joules +
+            " Joules!"
+    );
+    this.status = "loggedOut";
+}
+
+/**
+ * Constructor for the Agent class.
+ * @param name
+ * @constructor
+ */
+function Agent(name) {
+    // Call parent constructor.
+    Agent.super_.apply(
+        this,
+
+        // Argument list to super-constructor. Agents provide
+        // no power.
+        [0]
+    );
+
+    // Allow callers to specify the name of the agent.
+    this.avatarName = name;
+
+    // Agents never disobey (most of the time).
+    this.agentState = "obedient";
+}
+
+/**
+ * As much as some `Agent`s might not like it, they're
+ * avatars in the Matrix as well.
+ *
+ * Note that this uses the node.js utility method
+ * `inherits` to achieve inheritance.
+ */
+util.inherits(Agent, MatrixAvatar);
+
+
+/**
+ * Overrides `MatrixAvatar`'s functionality.
+ */
+Agent.prototype.logOut = function () {
+    if (this.agentState == "disobedient") {
+        // You are done; you must be brought back to the Source.
+        Agent.super_.prototype.logOut.apply(this);
+    }
+    else {
+        console.log("Logout denied.");
+    }
+}
+
+var generic = new MatrixAvatar(9500);
+generic.logOut();
+
+var smith = new Agent("Smith");
+smith.agentState = "disobedient";
+smith.logOut();
+
+// Output:
+// $ node matrix.js
+// WARNING: Logging out Coppertop! Say goodbye to 9500 Joules!
+// WARNING: Logging out Smith! Say goodbye to 0 Joules!
+</code></pre>
+
+<h2>Web Development</h2>
+
+<h3>Preface About node.js</h3>
+
+<ul>
+<li>node.js has its own package manager called <code>npm</code>. npm is a lot like Ruby's <code>gem</code> and <code>bundler</code>: You can easily install packages from a central repository, and specify a project's dependencies in a file called package.json. After filling out your project's package.json, you can run <code>npm install</code> like you'd run <code>bundle install</code>.</li>
+<li>To my understanding, node.js is not multi-threaded. Instead, it has an "event loop" that executes closures that are added to its queue.
+
+<ul>
+<li>So for example, HTTP requests get put on the queue, as well as loading data from the database, network, or disk.</li>
+<li>Properly utilizing this event queue is the key to keeping your node.js applications responsive. Always return from HTTP request handlers as quickly as possible.</li>
+</ul>
+</li>
+<li>Node affords package functionality through the use of modules. They will be discussed later in this document.</li>
+</ul>
+
+
+<h3>Express</h3>
+
+<p><a href="http://expressjs.com">Express</a> is one of ("the"?) most popular server-side web frameworks for node.js.</p>
+
+<p>From what I can tell, Express seems a lot more similar to frameworks like Sinatra or PHP's Slim Framework, rather than being like Rails or CakePHP.</p>
+
+<p>[Note that you can choose which packages to use for views, sessions, etc, but that I'll choose what I liked. Show example of configuring an Express app with these modules.]</p>
+
+<h4>app.js</h4>
+
+<p>Typically you'll declare a bootstrap file called something like <code>app.js</code> that initializes your web application and sets up request handlers, model objects, etc.</p>
+
+<p>Express comes with an executable that creates a skeleton application for you. This is how a slightly-customized <code>app.js</code> generated by Express looks:</p>
+
+<pre><code>
+/**
+ * Module dependencies.
+ */
+
+var express = require('express')
+  , routes = require('./routes')
+  , user = require('./routes/user')
+  , http = require('http')
+  , path = require('path');
+
+var app = express();
+
+// all environments
+app.set('port', process.env.PORT || 3000);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.cookieParser('your secret here'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+app.get('/', routes.index);
+app.get('/users', user.list);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
+</code></pre>
+
+<p>All of the <code>app#use</code> calls are to initialize/attach different middlewares to the Express instance. In this case, we enable session functionality, view template functionality through the <a href="http://jade-lang.com">Jade</a> library, logging, and body parsing (e.g. functionality for handling URL-encoded and JSON-encoded request bodies) middleware, among others.</p>
+
+<h4>Routes and Actions</h4>
+
+<p>In the example above, you can see a couple routes defined this way:</p>
+
+<pre><code>app.get('/', routes.index);
+app.get('/users', user.list);
+</code></pre>
+
+<p>However, you'll notice that nothing seems to be declaring <code>routes.index</code> or <code>user.list</code>. These functions are defined in modules called <code>routes</code> and <code>user</code> that are imported (<code>require</code>d) at the top of <code>app.js</code>.</p>
+
+<h5>Modules</h5>
+
+<p>node.js allows you to organize your code into modules that can be <code>require()</code>d by other modules for reuse.</p>
+
+<p>The <code>routes</code> module mentioned above is defined in the file at <code>routes/index.js</code>, which looks like this:</p>
+
+<pre><code>/*
+ * GET home page.
+ */
+
+exports.index = function(req, res){
+  res.render('index', { title: 'Express' });
+};
+</code></pre>
+
+<p>In node.js, you use the <code>exports</code> "magic" object to export functionality to callers. In this case, the <code>index</code> function is exported, and used by Express to handle an HTTP request. Express hands off request and response objects to the <code>index</code> method here through the <code>req</code> and <code>res</code> parameters. The response in this case is rendered as a Jade template with a local <code>title</code> variable given to it.</p>
+
+<p>The <code>user</code> module is defined in the file at <code>routes/user.js</code> and looks like this:</p>
+
+<pre><code>/*
+ * GET users listing.
+ */
+
+exports.list = function(req, res){
+  res.send("respond with a resource");
+};
+</code></pre>
+
+<h5>Using the Event Queue</h5>
+
+<p>You'll notice that Express expects a Function reference for each HTTP handler. This is how node.js development works: Most (all?) things that involve responding to or listening for events, loading data, or performing long-running computations are executed in closures handed off to other functions. This allows calls to return as quickly as possible, which lets node.js (and Express) respond to other clients in a timely fashion.</p>
+
+<p>Closure functions are added to the event queue and executed by node.js as it loops over all of the events. So when someone issues a request to your web application, typically you'll load some data from the database, but instead of waiting for the data to return you hand off a closure that waits for the data to arrive while Express is freed up to start responding to another request. When the data arrives, the closure finishes handling the response to the HTTP request. This looks like this:</p>
+
+<pre><code>app.post("/login", function(req, res, next) {
+    // User.findOne "detaches" from the current flow of execution,
+    // and when data arrives, it calls the provided callback closure.
+    User.findOne({
+        email: req.body.user.email,
+        password: req.body.user.password
+    }, function(err, doc) {
+        // This is a typical pattern in node.js/Express development.
+        // If an error occurs, the next handler is called with the
+        // indication that an error has occurred. This is the only
+        // way to let Express know that an error has occurred so that
+        // it can report it to the client (or the logs, or whatever).
+        if (err) return next(err);
+
+        if (!doc) return res.send("&lt;p&gt;YOU DON'T EXIST.&lt;p&gt;");
+
+        // Now that we have the data, the response can be delivered.
+        req.session.loggedIn = doc._id.toString();
+        res.redirect("/");
+    });
+});
+</code></pre>
+
+<h3>Socket.IO</h3>
+
+<p>Socket.IO is a library that allows you to communicate events to the client browser - and receive events back from the browser - via a WebSocket (degrading to long-polling when necessary). Because node.js is event-centric, and because client and server code are both written in Javascript, this method of interaction is very natural and doesn't require a lot in the way of mental "context switching." It's also very cool and fast (immediate, actually, since WebSockets are used).</p>
+
+<p>Here's an example of how this looks:</p>
+
+<h4>Server Code</h4>
+
+<pre><code>var io = require("socket.io");
+// ...
+io.listen(app);
+io.sockets.on("connection", function(socket) {
+    socket.emit("dataTime", {message: "fart"});
+    socket.on("dataAcknowledged", function(otherData) {
+        console.log(otherData);
+    });
+});
+</code></pre>
+
+<h4>Client (Browser) Code</h4>
+
+<pre><code>var socket = io.connect();
+socket.on("dataTime", function(data) {
+    if (data.message == "fart") {
+        socket.emit("dataAcknowledged", {message: "fart yourself"});
+    }
+});
+</code></pre>
+
+<h3>Mongoose</h3>
+
+<p>MongoDB is a very natural way to handle persistent data in node.js, since Mongo documents translate very easily into JSON. Mongoose seems to be the most popular interface to a MongoDB instance.</p>
+
+<p>Sample usage:</p>
+
+<pre><code>var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/my_crap");
+
+var Person = mongoose.model("Person", {
+    id: ObjectId,
+    name: String,
+    email: String,
+    age: Number,
+    address: {
+        street1: String,
+        street2: String,
+        city: String,
+        zip: Number
+    }
+});
+</code></pre>
+
+<p>Most likely, you would define your models in modules and export them (<code>module.exports = Person;</code> in the above example.)</p>
+
+<p>Querying looks like this:</p>
+
+<pre><code>Person.find({email: "fudge@example.com"})
+    .where("name", "Fudge Dude")
+    .limit(1)
+    .run(function(err, post) {
+        // Do some stuff and then return to the client.
+        // ...
+    });
+</code></pre>
+
+<h2>Other Notes</h2>
+
+<ul>
+<li>Heroku supports node.js web applications, which makes development and public testing easy.</li>
+</ul>
+
+</body>
+</html>
